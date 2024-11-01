@@ -66,13 +66,13 @@ public abstract class ParentLongArray implements ArrayInterface {
 
     @Override
     public long getMax() {
-        if (maxValue == null) throw new IllegalStateException("Array is empty");
+        if (maxValue == null) throw new IllegalStateException("Массив пустой");
         return maxValue;
     }
 
     @Override
     public long getMin() {
-        if (minValue == null) throw new IllegalStateException("Array is empty");
+        if (minValue == null) throw new IllegalStateException("Массив пустой");
         return minValue;
     }
 
