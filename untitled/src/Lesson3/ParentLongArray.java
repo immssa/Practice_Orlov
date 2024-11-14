@@ -3,8 +3,6 @@ package Lesson3;
 public abstract class ParentLongArray implements ArrayInterface {
     protected final long[] array; // Массив для хранения значений
     protected int nElems; // Текущее количество элементов в массиве
-    protected Long minValue = null; // Минимальное значение, обновляется при добавлении
-    protected Long maxValue = null; // Максимальное значение, обновляется при добавлении
     protected int operationsCount = 0; // Счетчик операций
 
     @Override
@@ -23,11 +21,6 @@ public abstract class ParentLongArray implements ArrayInterface {
         if (nElems == array.length) {
             return false; // Массив полон, вставка невозможна
         }
-
-        // Обновление минимального и максимального значений массива
-        if (minValue == null || value < minValue) minValue = value;
-        if (maxValue == null || value > maxValue) maxValue = value;
-
         array[nElems++] = value; // Добавление нового элемента
         return true;
     }
@@ -44,36 +37,13 @@ public abstract class ParentLongArray implements ArrayInterface {
             return false; // Элемент не найден
         } else {
             // Сдвиг оставшихся элементов влево
-            System.arraycopy(array, i + 1, array, i, nElems - i - 1);
+            for (int j = i; j < nElems - 1; j++) {
+                array[j] = array[j + 1];
+            }
             nElems--;
 
-            // Обновляем min и max значения, если удалено одно из них
-            if (value == minValue || value == maxValue) {
-                recalculateMinMax();
-            }
             return true;
         }
-    }
-
-    // Метод для пересчета минимального и максимального значений
-    private void recalculateMinMax() {
-        minValue = maxValue = null;
-        for (int i = 0; i < nElems; i++) {
-            if (minValue == null || array[i] < minValue) minValue = array[i];
-            if (maxValue == null || array[i] > maxValue) maxValue = array[i];
-        }
-    }
-
-    @Override
-    public long getMax() {
-        if (maxValue == null) throw new IllegalStateException("Массив пустой");
-        return maxValue;
-    }
-
-    @Override
-    public long getMin() {
-        if (minValue == null) throw new IllegalStateException("Массив пустой");
-        return minValue;
     }
 
     @Override

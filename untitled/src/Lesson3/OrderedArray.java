@@ -66,7 +66,9 @@ public class OrderedArray extends ParentLongArray {
 
         if (deleteIndex == -1) return false;
 
-        System.arraycopy(array, deleteIndex + 1, array, deleteIndex, nElems - deleteIndex - 1);
+        for (int i = deleteIndex; i < nElems - 1; i++) {
+            array[i] = array[i + 1];
+        }
         nElems--;
         return true;
     }

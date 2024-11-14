@@ -16,4 +16,40 @@ public class CommonArray extends ParentLongArray {
         }
         return false;
     }
+
+    @Override
+    public long getMin() {
+        if (nElems == 0) {
+            throw new IllegalStateException("Массив пуст.");
+        }
+
+        // Инициализация минимального значения первым элементом
+        long min = array[0];
+
+        // Поиск минимального значения в массиве
+        for (int i = 1; i < nElems; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+
+    @Override
+    public long getMax() {
+        if (nElems == 0) {
+            throw new IllegalStateException("Массив пуст.");
+        }
+
+        // Инициализация максимального значения первым элементом
+        long max = array[0];
+
+        // Поиск максимального значения в массиве
+        for (int i = 1; i < nElems; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+        return max;
+    }
 }
