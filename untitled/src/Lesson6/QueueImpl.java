@@ -1,13 +1,13 @@
 package Lesson6;
 
-public class Queue implements QueueInterface{
+public class QueueImpl implements Queue {
     private int maxSize;
     private long[] queArray;
     private int front;
     private int rear;
     private int nItems;
 
-    public Queue(int s) {
+    public QueueImpl(int s) {
         maxSize = s;
         queArray = new long[maxSize];
         front = 0;
@@ -29,12 +29,18 @@ public class Queue implements QueueInterface{
     }
 
     public long remove() { // Извлечение элемента в начале очереди
-        long temp = queArray[front++]; // Выборка и увеличение front
-        if (front == maxSize) { // Циклический перенос
-            front = 0;
+        if (isEmpty()){
+            System.out.println("Очередь пустая");
+            return 0;
         }
-        nItems--; // Уменьшение количества элементов
-        return temp;
+        else{
+            long temp = queArray[front++]; // Выборка и увеличение front
+            if (front == maxSize) { // Циклический перенос
+                front = 0;
+            }
+            nItems--; // Уменьшение количества элементов
+            return temp;
+        }
     }
 
     public long peekFront() { // Чтение элемента в начале очереди
@@ -58,5 +64,10 @@ public class Queue implements QueueInterface{
             System.out.print(queArray[i] + " ");
         }
         System.out.println();
+    }
+
+    @Override
+    public long peekMin(){
+        return 0;
     }
 }

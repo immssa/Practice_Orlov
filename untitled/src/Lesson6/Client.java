@@ -6,16 +6,16 @@ import java.util.Random;
 public class Client {
     public static void main(String[] args){
         Random random = new Random();
-        String palindrom = "ABCBA";
-        int size = 100;
+        String palindrom = "ABCBAC";
+        int size = 10;
 
-        Stack stack = new Stack(palindrom.length());
-        Queue queue = new Queue(size);
+        StackImpl stack = new StackImpl(palindrom.length());
+        QueueImpl queue = new QueueImpl(size);
         PriorityQueue priorityQueue = new PriorityQueue(size);
 
         for (int i = 0; i < size; i++) {
-            queue.insert(random.nextLong(10000));
-            priorityQueue.insert(random.nextLong(10000));
+            queue.insert(random.nextLong(100));
+            priorityQueue.insert(random.nextLong(100));
         }
 
         queue.display();

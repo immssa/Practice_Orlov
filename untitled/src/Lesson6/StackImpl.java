@@ -1,13 +1,11 @@
 package Lesson6;
 
-import java.io.IOException;
-
-public class Stack implements StackInterface{
+public class StackImpl implements Stack {
     private int maxSize;
     private char[] stackArray;
     private int top;
 
-    public Stack(int s) {
+    public StackImpl(int s) {
         maxSize = s;
         stackArray = new char[maxSize];
         top = -1;
@@ -23,7 +21,13 @@ public class Stack implements StackInterface{
     }
 
     public char pop() {
-        return stackArray[top--];
+        if (isEmpty()) {
+            System.out.println("Стек пуст");
+            return 0;
+        }
+        else {
+            return stackArray[top--];
+        }
     }
 
     public char peek() {

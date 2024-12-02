@@ -1,6 +1,6 @@
 package Lesson6;
 
-public class PriorityQueue implements PriorityQueueInterface{
+public class PriorityQueue implements Queue {
     // Элементы массива сортируются по значению ключа,
     // от максимумa (0) до минимума (maxSize-1)
     private int maxSize;
@@ -36,7 +36,11 @@ public class PriorityQueue implements PriorityQueueInterface{
     }
 
     public long remove() {
-        return queArray[--nItems];
+        if (isEmpty()){
+            System.out.println("Приоритетная очередь пустая");
+            return 0;
+        }
+        else return queArray[--nItems];
     }
 
     public long peekMin() {
@@ -56,5 +60,15 @@ public class PriorityQueue implements PriorityQueueInterface{
             System.out.print(queArray[i] + " ");
         }
         System.out.println();
+    }
+
+    @Override
+    public long peekFront() {
+        return 0;
+    }
+
+    @Override
+    public int size() {
+        return 0;
     }
 }
